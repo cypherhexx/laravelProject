@@ -2,13 +2,19 @@
 @section('title', __('form.projects'))
 @section('content')
 
+
 <style>
   @media (max-width: 768px) {
       .created {
         display: none;
       }
+
+      #data tr > *:nth-child(3) {
+            display: none;
+        }
   }
 </style>
+
 <div class="main-content">
     <h4>@lang('form.projects')</h4>
     <hr>
