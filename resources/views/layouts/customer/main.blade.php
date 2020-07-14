@@ -51,7 +51,7 @@
 
       #sidebar.active {
         display: block!important;
-        position: absolute;
+        position: fixed;
         right: 0px;
         top: 70px;
         bottom: 0px;
