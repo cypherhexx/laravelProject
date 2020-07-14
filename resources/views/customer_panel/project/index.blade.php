@@ -1,6 +1,14 @@
 @extends('layouts.customer.main')
 @section('title', __('form.projects'))
 @section('content')
+
+<style>
+  @media (max-width: 768px) {
+      .created {
+        display: none;
+      }
+  }
+</style>
 <div class="main-content">
     <h4>@lang('form.projects')</h4>
     <hr>

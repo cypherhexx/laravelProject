@@ -18,6 +18,7 @@
     margin-left: auto;
   }
 
+
   .col-md-3 {
     text-align: right!important;
   }
@@ -36,6 +37,12 @@
   td {
     text-align: right;
   }
+
+   @media (max-width: 1700px) {
+      #content_customer {
+        margin-right: 50px;
+      }
+   }
 
    @media (max-width: 768px) {
       .sidebar {
