@@ -40,6 +40,14 @@
 
 ?>
 
+<style>
+  @media (max-width: 768px) {
+      .created {
+        display: none;
+      }
+  }
+</style>
+
 <div class="statement-container" style="font-size: 13px;">
 <htmlpageheader name="firstpageheader" style="display:none">
 <div class="row">
@@ -68,7 +76,7 @@
 
              <table class="table">
                  <tr>
-                     <td style="text-align: left;">@lang('form.beginning_balance')</td>
+                     <td style="text-align: right;">@lang('form.beginning_balance')</td>
                      <td class="text-right">{{ format_currency($data['beginning_balance'], TRUE, $data['currency_symbol'] ) }}</td>
                  </tr>
                  <tr>
@@ -96,7 +104,7 @@
 <table class="table table-striped table-bordered table-sm" width="100%" id="data">
     <thead>
         <tr>
-            <th>@lang("form.date")</th>
+            <th class="created">@lang("form.date")</th>
             <th>@lang("form.details")</th>
             <th class="text-right">@lang("form.amount")</th>        
             <th class="text-right">@lang("form.payment")</th>
@@ -107,7 +115,7 @@
     <tbody>
      <?php $balance = $data['beginning_balance']; ?>
             <tr>
-                <td>{{ date("d-m-Y", strtotime($data['date_from']))  }}</td>
+                <td class="created">{{ date("d-m-Y", strtotime($data['date_from']))  }}</td>
                 <td>@lang('form.beginning_balance')</td>
                 <td class="text-right">{{ format_currency($balance) }}</td>
                 <td class="text-right"></td>
@@ -116,7 +124,7 @@
         @if(count($rec) > 0)       
             @foreach($rec as $row)
                 <tr>
-                    <td>{{ sql2date($row->date) }}</td>
+                    <td class="created">{{ sql2date($row->date) }}</td>
                     <td><?php echo get_details($row) ; ?></td>
                     <td class="text-right">
                         {{ ($row->type != 'payment' && $row->type != 'applied_credit') ? format_currency($row->amount) : '' }}

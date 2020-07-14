@@ -14,7 +14,8 @@
 </head>
 <style type="text/css">
   #content_customer {
-    margin-right: 40px!important;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .col-md-3 {

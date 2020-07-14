@@ -27,7 +27,7 @@
             <th>@lang("form.ticket_#")</th>
             <th>@lang("form.subject")</th>
             <th>@lang("form.department")</th>
-            <th >@lang("form.project")</th>
+            <th class="created">@lang("form.project")</th>
             <th class="created">@lang("form.service")</th>
             <th class="created">@lang("form.status")</th>
             <th class="created">@lang("form.priority")</th>
