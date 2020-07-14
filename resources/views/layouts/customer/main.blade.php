@@ -50,7 +50,7 @@
       }
 
       #sidebar.active {
-        display: block!important;
+        display: none;
         position: fixed;
         right: 0px;
         top: 70px;
@@ -63,12 +63,16 @@
         margin-right: auto!important;
       }
 
+      #prevNav {
+        display: none;
+      }
+
    }
 
 </style>
 <body>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap">
+<nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap" id="prevNav">
    <a class="navbar-brand navbar-brand col-sm-3 col-md-2 mr-0 d-none d-sm-block" href="#">
       <div>
         @if(get_company_logo(NULL, TRUE))
@@ -115,7 +119,7 @@
         </ul>
    </div>
 </nav>
-
+@include('layouts.customer.menu2')
 <div class="wrapper">
     @include('layouts.customer.menu')
     <div id="content_customer" style="width: 1600px; padding-left: 30px; ">
