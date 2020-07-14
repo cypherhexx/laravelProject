@@ -80,15 +80,15 @@
                      <td class="text-right">{{ format_currency($data['beginning_balance'], TRUE, $data['currency_symbol'] ) }}</td>
                  </tr>
                  <tr>
-                     <td style="text-align: left;">@lang('form.invoiced_amount')</td>
+                     <td style="text-align: right;">@lang('form.invoiced_amount')</td>
                      <td class="text-right">{{ format_currency($data['invoiced_amount'], TRUE, $data['currency_symbol'] ) }}</td>
                  </tr>
                  <tr>
-                     <td style="text-align: left;">@lang('form.amount_paid')</td>
+                     <td style="text-align: right;">@lang('form.amount_paid')</td>
                      <td class="text-right">{{ format_currency($data['payment_amount'], TRUE, $data['currency_symbol'] ) }}</td>
                  </tr>
                  <tr>
-                     <td style="text-align: left;">@lang('form.balance_due')</td>
+                     <td style="text-align: right;">@lang('form.balance_due')</td>
                      <td class="text-right">{{ format_currency($data['balance_due'], TRUE, $data['currency_symbol'] ) }}</td>
                  </tr>
              </table>

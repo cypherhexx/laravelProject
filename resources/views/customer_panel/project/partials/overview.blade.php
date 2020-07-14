@@ -73,7 +73,7 @@
             <div class="{{ (isset($rec->start_date) && isset($rec->dead_line)) ? 'col-md-6' : 'col-md-12' }}">
                 <h6 style="font-weight: bold">
                     {{ count($rec->open_tasks) }} / {{ count($rec->tasks) }} {{ strtoupper(__('form.open_tasks')) }}
-                    <i class="fas fa-check-circle float-md-right" style="color: #eee; font-size: 24px;"></i>
+                   <i class="fas fa-check-circle float-md-right" style="color: #eee; font-size: 24px; padding-right: 10px;padding-left: 10px;"></i>
                 </h6>
             </div>
             <div class="col-md-6">
@@ -89,7 +89,7 @@
                     ?>
                     <h6 style="font-weight: bold">
                         {{ $days_left }} / {{ $total_days }} {{ strtoupper(__('form.days_left')) }}
-                        <i class="far fa-calendar-check float-md-right" style="color: #eee; font-size: 24px;"></i>
+                       <i  class="far fa-calendar-check float-md-right" style="color: #eee; font-size: 24px; padding-right: 10px; padding-left: 10px;"></i>
                     </h6>
 
 

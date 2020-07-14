@@ -31,10 +31,18 @@
     text-align: right!important;
   }
 
+  div {
+    text-align: right;
+  }
+
   th {
     text-align: right;
   }
   td {
+    text-align: right;
+  }
+
+  label {
     text-align: right;
   }
 
