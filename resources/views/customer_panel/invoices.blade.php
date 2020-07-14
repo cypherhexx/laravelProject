@@ -2,6 +2,15 @@
 @section('title', __('form.invoices'))
 @section('content')
 
+
+<style>
+  @media (max-width: 768px) {
+      .created {
+        display: none;
+      }
+  }
+</style>
+
 <div class="main-content">
 
 <h6>@lang('form.invoices')</h6>
@@ -14,7 +23,7 @@
             <th>@lang("form.amount")</th>
             <th>@lang("form.total_tax")</th>        
             <th>@lang("form.date")</th>
-            <th>@lang("form.due_date")</th>            
+            <th class="created">@lang("form.due_date")</th>            
             <th>@lang("form.status")</th>
         </tr>
     </thead>

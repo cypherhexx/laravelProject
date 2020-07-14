@@ -1,6 +1,15 @@
 @extends('layouts.customer.main')
 @section('title', __('form.tickets'))
 @section('content')
+
+<style>
+  @media (max-width: 768px) {
+      .created {
+        display: none;
+      }
+  }
+</style>
+
 <div class="main-content">
    <div class="row">
       <div class="col-md-6">
@@ -18,12 +27,12 @@
             <th>@lang("form.ticket_#")</th>
             <th>@lang("form.subject")</th>
             <th>@lang("form.department")</th>
-            <th>@lang("form.project")</th>
-            <th>@lang("form.service")</th>
-            <th>@lang("form.status")</th>
-            <th>@lang("form.priority")</th>
+            <th >@lang("form.project")</th>
+            <th class="created">@lang("form.service")</th>
+            <th class="created">@lang("form.status")</th>
+            <th class="created">@lang("form.priority")</th>
             <th style="display: none;">@lang("form.last_reply")</th>
-            <th>@lang("form.created")</th>
+            <th class="created">@lang("form.created")</th>
          </tr>
       </thead>
    </table>

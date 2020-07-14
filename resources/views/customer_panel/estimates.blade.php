@@ -2,6 +2,15 @@
 @section('title', __('form.estimates'))
 @section('content')
 
+
+<style>
+  @media (max-width: 768px) {
+      .created {
+        display: none;
+      }
+  }
+</style>
+
 <div class="main-content">
 
     <h6>@lang('form.estimates')</h6>
@@ -13,8 +22,8 @@
             <th>@lang("form.date")</th>
             <th>@lang("form.expiry_date")</th>
             <th class="text-right">@lang("form.amount")</th>            
-            <th>@lang("form.reference")</th>
-            <th>@lang("form.status")</th>
+            <th class="created">@lang("form.reference")</th>
+            <th class="created">@lang("form.status")</th>
         </tr>
         </thead>
     </table>

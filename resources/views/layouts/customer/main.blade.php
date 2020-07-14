@@ -38,15 +38,30 @@
 
    @media (max-width: 768px) {
       .sidebar {
-         display: none!important;
+         display: none;
       }
+
+      #sidebar.active {
+        display: block!important;
+        position: absolute;
+        right: 0px;
+        top: 70px;
+        bottom: 0px;
+        transition:.5s;
+      }
+
+      #content_customer {
+        padding-left: 0px !important;
+        margin-right: auto!important;
+      }
+
    }
 
 </style>
 <body>
 
 <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap">
-   <a class="navbar-brand navbar-brand col-sm-3 col-md-2 mr-0 d-none d-sm-block" href="{{ route('dashboard') }}">
+   <a class="navbar-brand navbar-brand col-sm-3 col-md-2 mr-0 d-none d-sm-block" href="#">
       <div>
         @if(get_company_logo(NULL, TRUE))
           <img src="{{ get_company_logo(NULL, TRUE) }}" class="img-fluid" alt="{{ config('constants.company_name') }}">  
