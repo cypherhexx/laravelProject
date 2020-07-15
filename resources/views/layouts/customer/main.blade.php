@@ -80,7 +80,7 @@
 </style>
 <body>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap" id="prevNav">
+<nav class="navbar navbar-expand navbar-dark bg-dark flex-md-nowrap" id="prevNav" style="height: 47px;">
    <a class="navbar-brand navbar-brand col-sm-3 col-md-2 mr-0 d-none d-sm-block" href="#">
       <div>
         @if(get_company_logo(NULL, TRUE))
@@ -93,13 +93,13 @@
    </a>
 
    <div class="collapse navbar-collapse" id="navbarsExample02">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="margin-top: -10px;">
          <li class="nav-item active">
             <a href="#" id="sidebarCollapse"><i class="fa fa-bars"></i></a>
          </li>
       </ul>
 
-      <ul class="navbar-nav ml-auto">
+     <!--  <ul class="navbar-nav ml-auto">
               
 
            @if(!Auth::check() || is_current_user_a_team_member() )                  
@@ -121,6 +121,48 @@
                  <a class="dropdown-item" href="{{ route('cp_user_profile') }}">@lang('form.profile')</a>
                  <a class="dropdown-item" href="{{ route('cp_change_password') }}">@lang('form.change_password')</a>
                  <a class="dropdown-item" href="{{ route('customer_logout') }}"> @lang('form.logout')</a>
+              </div>
+           </li>
+            @endif
+        </ul> -->
+
+        <ul class="navbar-nav ml-auto" style="position: absolute;left: 15px; top:5px;">
+              
+
+           @if(!Auth::check() || is_current_user_a_team_member() )                  
+
+              @if(!is_customer_registration_feature_disabled())
+                 <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('customer_registration_page') }}">@lang('form.register')</a>
+                 </li>
+              @endif   
+           <li class="nav-item active">
+              <a class="nav-link" href="{{ route('customer_login_page') }}">@lang('form.login')</a>
+           </li>
+           @endif
+           @if(Auth::check() && is_current_user_a_customer())
+           <li class="nav-item dropdown">
+              <a class="nav-link" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top: -10px;    border: 1px solid white;width: 38px; height:  38px; border-radius: 100%;background: white;color: black;font-size: 22px;padding:1px 10px 5px 7px!important;"> 
+                {{  ucfirst(str_limit(auth()->user()->first_name, $limit = 1, $end = ''))}} </a>
+              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdown01" style="width: 290px;color: #333;padding-bottom: 0px;padding-top: 10px;
+    ">
+                 <div style="display: flex;">
+                   <img itemprop="image" src="https://netpower-studio.com/wp-content/themes/pxlz/assets/img/logo.png" alt="Mobile Logo" style="height: 20px; margin-right: 20px;margin-top: 5px;"> &nbsp; 
+                     <a class="dropdown-item" style="text-align: left;" href="{{ route('customer_logout') }}"> @lang('form.logout')</a>
+                 </div>
+                <div class="row" style="margin-top: 20px">
+                  <div class="col-md-5">
+                    <div style="margin-right: 10px; color: white;font-weight: bold; background-color: rgb(93,0,93);font-size: 60px;border-radius: 100%; width: 90px;"><span style="margin-right: 24px">{{  ucfirst(str_limit(auth()->user()->first_name, $limit = 1, $end = ''))}}</span></div>
+                  </div>
+                  <div class="col-md-7">
+                    <span style="    text-align: right;font-size: 20px;margin-right: 20px; font-weight: bolder;">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
+                    <a class="dropdown-item" href="{{ route('cp_user_profile') }}">@lang('form.profile')</a>
+                    <a class="dropdown-item" href="{{ route('cp_change_password') }}">@lang('form.change_password')</a>
+                  </div>
+                </div>
+                <div style="background-color: rgba(0,0,0,.04);text-align: left; height: 40px;padding-left: 25px;padding-top: 8px;">
+                   <a href="{{ route('customer_logout') }}" style="float: left!important; color: #333; padding-left: 10px;">@lang('form.sign_in_different')<i class="fa fa-user-plus" style="margin-right: 20px;"></i></a>
+                </div>
               </div>
            </li>
             @endif

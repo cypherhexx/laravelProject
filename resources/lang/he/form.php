@@ -1238,7 +1238,8 @@ return [
     'online_payment' => 'תשלום אונליין ',
     'disable_job_queue' => 'השבת את תור העבודה ',
     'value' => 'ערך ',
-    'frequency' => 'תדירות '
+    'frequency' => 'תדירות ',
+    'sign_in_different' => 'היכנס באמצעות חשבון אחר '
 ];
 
 
