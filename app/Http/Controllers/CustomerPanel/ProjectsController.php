@@ -77,14 +77,13 @@ class ProjectsController extends Controller
                 })
             ;
 
-
+            $query->get()->where('customer_id', Auth::user()->customer_id );
         }
 
-        $recordsFiltered = $query->get()->count();
-        $query->skip(Input::get('start'))->take(Input::get('length'));
-        $data = $query->get();
-//
+        $recordsFiltered = $query->get()->where('customer_id', Auth::user()->customer_id )->count();
 
+        $query->skip(Input::get('start'))->take(Input::get('length'));
+        $data = $query->get()->where('customer_id', Auth::user()->customer_id );
         $rec = [];
 
         if (count($data) > 0)
@@ -115,7 +114,8 @@ class ProjectsController extends Controller
             "data" => $rec
         );
 
-
+        error_log("final data");
+        //error_log(json_encode($output));
         return response()->json($output);
 
     }
