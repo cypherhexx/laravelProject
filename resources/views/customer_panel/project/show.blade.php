@@ -7,7 +7,41 @@
         $sub_group_name = app('request')->input('subgroup');
     @endphp
 
-    <div class="main-content" style="margin-bottom: 20px !important;">
+<style type="text/css">
+    .project-navigation li a{
+        padding-top: 15px;
+        min-height: 80px;
+        display: block;
+        text-align: center;
+        display: block;
+    }
+
+    .project-navigation div {
+        display: block;
+        padding:10px 10px;
+    }
+
+    .project-navigation li {
+        height: 100%;
+        width: 100%;
+        background: white;
+        border-radius: 10px!important; 
+    }
+
+    .project-navigation li a i {
+        font-size: 40px;
+    }
+
+
+
+    .project-navigation .nav-link:not(.active) {
+    color: rgb(108,117,125)!important;
+    }
+
+
+</style>
+
+    <div class="main-content" style="margin-bottom: 20px !important;background: transparent!important;border: none!important;">
 
         <div class="row">
             <div class="col-md-6"><h4>{{ $rec->name }}</h4></div>
@@ -22,33 +56,43 @@
             </div>
          </div>  
 
-       <ul class="nav project-navigation">
+       <ul class="nav project-navigation row">
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}"><i class="fas fa-th-list"></i> @lang('form.overview')</a>
+                <a style="border: none!important; float: none!important;" class="nav-link {{ is_active_nav('', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}"><i class="fas fa-th-list"></i><br> @lang('form.overview')</a>
             </li>
+            </div>
 
             @if(check_customer_project_permission($rec->settings->tabs, 'milestones'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('milestones', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=milestones"><i class="fas fa-rocket"></i> @lang('form.milestones')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('milestones', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=milestones"><i class="fas fa-rocket"></i><br> @lang('form.milestones')</a>
             </li>
+            </div>
             @endif
 
             @if(check_customer_project_permission($rec->settings->tabs, 'tasks'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('tasks', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=tasks"><i class="fas fa-check-circle"></i> @lang('form.tasks')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('tasks', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=tasks"><i class="fas fa-check-circle"></i><br> @lang('form.tasks')</a>
             </li>
+            </div>
             @endif
 
             @if(check_customer_project_permission($rec->settings->tabs, 'timesheets'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('timesheets', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=timesheets"><i class="far fa-clock"></i> @lang('form.timesheets')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('timesheets', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=timesheets"><i class="far fa-clock"></i><br> @lang('form.timesheets')</a>
             </li>
+            </div>
             @endif
 
             @if(check_customer_project_permission($rec->settings->tabs, 'files'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('files', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=files"><i class="far fa-file"></i> @lang('form.files')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('files', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=files"><i class="far fa-file"></i><br> @lang('form.files')</a>
             </li>
+            </div>
            @endif
 
             {{--<li class="nav-item">--}}
@@ -56,9 +100,11 @@
             {{--</li>--}}
 
             @if(check_customer_project_permission($rec->settings->tabs, 'gantt_view'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('gantt', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=gantt"><i class="fas fa-chart-line"></i> @lang('form.gantt_view')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('gantt', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=gantt"><i class="fas fa-chart-line"></i><br> @lang('form.gantt_view')</a>
             </li>
+            </div>
             @endif
 
             <!-- <li class="nav-item">
@@ -66,15 +112,19 @@
             </li> -->
 
             @if(check_customer_project_permission($rec->settings->tabs, 'invoices'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('invoices', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=invoices"><i class="fas fa-file"></i> @lang('form.invoices')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('invoices', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=invoices"><i class="fas fa-file"></i> <br>@lang('form.invoices')</a>
             </li>
+            </div>
             @endif
 
             @if(check_customer_project_permission($rec->settings->tabs, 'estimates'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link {{ is_active_nav('estimates', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=estimates"><i class="fas fa-file"></i> @lang('form.estimates')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link {{ is_active_nav('estimates', $group_name) }}" href="{{ route('cp_show_project_page', $rec->id) }}?group=estimates"><i class="fas fa-file"></i><br> @lang('form.estimates')</a>
             </li>
+            </div>
             @endif
 
             {{--<li class="nav-item">--}}
@@ -82,9 +132,11 @@
             {{--</li>--}}
 
             @if(check_customer_project_permission($rec->settings->tabs, 'activity'))
+            <div class=" col-6 col-md-4 col-xl-2 one-row">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-exclamation"></i> @lang('form.activity')</a>
+                <a style="border: none!important;float: none!important;" class="nav-link" href="#"><i class="fas fa-exclamation"></i><br> @lang('form.activity')</a>
             </li>
+            </div>
             @endif
             
         </ul>
@@ -92,7 +144,7 @@
 
     </div>
    
-    <div class="main-content">
+    <div class="main-content" style="background: transparent!important;">
 
         @if($group_name == '')
             @include('customer_panel.project.partials.overview')

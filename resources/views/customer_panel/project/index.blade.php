@@ -9,9 +9,138 @@
             display: none;
         }
 
+        #data_filter input {
+            width: 130px!important;
+        }
+
         #data tr > *:nth-child(3) {
                 display: none;
         }
+
+        .buttons-collection {
+            flex: none!important;
+        }
+
+        .dt-buttons.btn-group {
+            position: relative; 
+            top: 45px;
+            direction: ltr!important;
+        }
+
+        .buttons-collection {
+            position: relative;
+            top: 10px;
+            left: 10px;
+        }
+
+        .dropdown-item span {
+            text-align: left;
+            color: black!important;
+        }
+
+        #data_filter:before {
+            font-family: "Font Awesome 5 Free";
+            content: ""!important;
+            display: none;
+            padding-right: -15px;
+            vertical-align: middle;
+            font-weight: 900;
+            position: relative;
+            right: 16px;
+            top: 65px;
+        }
+    }
+
+    td span {
+    display: block;
+    font-size: .9em;
+    line-height: 22px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333;
+    padding: 3px 5px;
+    font-size: 15px;
+    font-weight: lighter;
+    text-align: center;
+  }
+
+  tr:nth-child(even){background-color: rgb(248,252,253);}
+
+  .Unpaid {
+    color: red;
+  }
+
+    td {
+        border: none!important;
+    }
+
+    thead tr th {
+        border-top: none!important;
+        background: white!important;
+        font-weight: bolder!important;
+        border-bottom: 4px solid rgb(123,193,98)!important;
+      
+    }
+
+
+
+    #data_filter input {
+        width: 200px;
+        border: none;
+        height: 40px;
+        background: rgb(240,240,240);
+        padding-right: 40px;
+        float: right;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        margin-right: 10px;
+    }
+
+    #data_filter label {
+        background: linear-gradient(45deg,#0c0a0b,#0b8793);
+        width: 100%!important;
+    }
+
+    .buttons-collection {
+        padding-top: 8px!important;
+        padding-left: 8px!important;
+        color: white;
+        font-size: 18px;
+    }
+
+      .dt-buttons.btn-group {
+        position: relative; 
+        top: 45px;
+
+    }
+
+    .dt-buttons.btn-group button {
+        background: transparent!important;
+        border: none;
+    }
+
+
+    #data_filter:before {
+        font-family: "Font Awesome 5 Free";
+        content: "\f0b0";
+        display: inline-block;
+        padding-right: -15px;
+        vertical-align: middle;
+        font-weight: 900;
+        position: relative;
+        right: 16px;
+        top: 65px;
+    }
+
+    .dt-buttons.btn-group {
+        position: relative; 
+        top: 60px;
+    }
+
+    .dt-buttons.btn-group button {
+        background: transparent!important;
+        border: none;
     }
 
     .btn.open {
@@ -123,7 +252,7 @@
     </table>
 </div> -->
 
-<div class="main-content">
+<div class="main-content" >
     <h4>@lang('form.projects')</h4>
     <hr>
     <div class="row btn-filters">
@@ -164,11 +293,11 @@
     <table class="table dataTable table-hover no-footer dtr-inline collapsed" width="100%" id="data">
         <thead>
         <tr>
-            <th>@lang("form.name")</th>    
-            <th>@lang("form.start_date")</th>
-            <th>@lang("form.dead_line")</th>
-            <th>@lang("form.billing_type")</th>
-            <th>@lang("form.status")</th>
+            <th style="border-color: rgb(123,193,98)!important ">@lang("form.name")</th>    
+            <th style="border-color: rgb(162,210,122)!important ">@lang("form.start_date")</th>
+            <th style="border-color: rgb(123,193,98)!important ">@lang("form.dead_line")</th>
+            <th style="border-color: rgb(162,210,122)!important ">@lang("form.billing_type")</th>
+            <th style="border-color: rgb(123,193,98)!important ">@lang("form.status")</th>
         </tr>
         </thead>
     </table>

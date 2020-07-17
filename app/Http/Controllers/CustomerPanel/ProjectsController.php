@@ -404,7 +404,7 @@ class ProjectsController extends Controller
                     format_currency($row->tax_total),                                     
                     isset(($row->date)) ? sql2date($row->date) : "",
                     isset(($row->due_date)) ? sql2date($row->due_date) : "",
-                    $row->status->name,
+                    "<span class='".$row->status->name."'".">".$row->status->name."</span>",
 
                 );
 
@@ -418,6 +418,9 @@ class ProjectsController extends Controller
             "recordsFiltered" => $recordsFiltered,
             "data" => $rec
         );
+
+        error_log("output checking");
+        error_log(json_encode($output));
 
 
         return response()->json($output);

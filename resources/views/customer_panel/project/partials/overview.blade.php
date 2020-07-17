@@ -8,11 +8,17 @@
 
 <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-7">
         <h6>@lang('form.overview')</h6>
+        <hr style="margin-top: 23px">
         <div class="row">
-            <div class="col-md-7">
-                <table class="table project-overview-table">
+            <div class="col-md-5" style="background: white;padding-left: 0px!important; padding-right: 0px!important; border: 1px solid rgba(0,0,0,.125); ">
+            
+                  <div class="card-header" style="text-align: center;">
+                    <h3 class="card-title">@lang('form.details')</h3>
+                </div>
+                <div style="padding: 30px;">
+                <table class="table project-overview-table" style="">
                     <tbody>
                     <tr class="project-overview-customer">
                         <td><a href="{{ route('view_customer_page', $rec->customer_id) }}">{{ $rec->customer->name }}</a>
@@ -48,19 +54,53 @@
                     
                     </tbody>
                 </table>
+                </div>
             </div>
 
-            <div class="col-md-5">
-                <h6 class="text-center">@lang('form.project_progress')</h6>
-                <canvas width="100%" height="100%" id="project_progress"></canvas>
+            <div class="col-md-7">
+                <h3 class="text-center">@lang('form.project_progress')</h3>
+                <!-- <canvas width="100%" height="100%" id="project_progress"></canvas> -->
+                <div class="ro" id="chart" style="margin-top: 60px;width: 300px; height: 300px;">
+                </div>
             </div>
         </div>
         
 
         <hr>
-        <div id="description">
+        <div id="description" class="row">
+            <div class="col-md-6">
             <h6>@lang('form.description')</h6>
             <div style="font-size: 13px;"><?php echo nl2br($rec->description); ?></div>
+            </div>
+            <div class="col-md-6">
+            @if(check_customer_project_permission($rec->settings->permissions, 'view_team_members')) 
+            <div id="members">
+                <h6>@lang('form.members')</h6>
+                <?php $members = $rec->members; ?>
+                @if(count($members) > 0)
+                    <ul class="list-unstyled" style="font-size: 13px;">
+                    @foreach($members as $member)
+                        <li class="media">
+                        <img class="staff-profile-image-small mr-2" src="{{ asset('images/user-placeholder.jpg') }}" alt="Generic placeholder image">
+                        <div class="media-body">
+                          <div class="mt-0 mb-1">
+                            <a href="{{ route('member_profile', $member->id )}}">
+                                {{ $member->first_name . " ". $member->last_name }}
+                            </a>
+                        </div>
+                          
+                        </div>
+                        <br>
+                      </li>
+
+                    @endforeach
+                    </ul>
+                @endif
+            </div>
+            <hr>
+        @endif
+        </div>
+
         </div>
 
         
@@ -68,7 +108,7 @@
 
     </div>
 
-    <div class="col-md-6" style="border-left: 1px solid #eee;">
+    <div class="col-md-5" style="border-left: 1px solid #eee;">
         <div class="row">
             <div class="{{ (isset($rec->start_date) && isset($rec->dead_line)) ? 'col-md-6' : 'col-md-12' }}">
                 <h6 style="font-weight: bold">
@@ -113,7 +153,7 @@
             <hr>
         @endif
         
-        @if(check_customer_project_permission($rec->settings->permissions, 'view_team_members')) 
+       <!--  @if(check_customer_project_permission($rec->settings->permissions, 'view_team_members')) 
             <div id="members">
                 <h6>@lang('form.members')</h6>
                 <?php $members = $rec->members; ?>
@@ -138,9 +178,9 @@
                 @endif
             </div>
             <hr>
-        @endif
+        @endif -->
 
-        
+          
         <div id="tags">
             <h6>@lang('form.tags')</h6>
             <?php echo $rec->get_tags_as_badges(); ?>
@@ -148,77 +188,54 @@
 
     </div>
 </div>
+<!-- <div style="background: white;width: 220px;">
+<div id="piechart_3d" style="width: 200px; height: 200px; background: transparent!important;"></div>
+<h5>@lang('form.project_progress') :{{ $rec->progress_percentage() }}% </h5>
+</div> -->
+
+
+
 
 @section('innerPageJS')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="text/javascript">
+    
+    var percentCompleted = "{{ $rec->progress_percentage() }}";
+    var done =  parseInt(percentCompleted);
+    var options = {
+      series: [(done), (100 - done)],
+      chart: {
+      type: 'donut',
+    },
+      colors: [ '#ff0000','#546E7A'],
+    labels: ["done", "left"],
+    responsive: [{
+      breakpoint: 700,
+      options: {
+        chart: {
+          width: 300
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    },{
+      breakpoint: 1700,
+      options: {
+        chart: {
+          width: 330
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }]
+    };
 
-<script>
-
-    $(function () {
-
-        var percentCompleted = "{{ $rec->progress_percentage() }}";
-        var data = {
-            labels: [
-                "Red",
-                "Blue"
-
-            ],
-            datasets: [
-                {
-                    data: [percentCompleted, (100 - percentCompleted)],
-                    backgroundColor: [
-
-                        "#FF6384",
-                        "#eee"
-                    ],
-                    hoverBackgroundColor: [
-
-                        "#FF6384",
-                        "#eee"
-                    ]
-                }]
-        };
-
-        var promisedDeliveryChart = new Chart(document.getElementById('project_progress'), {
-            type: 'doughnut',
-            data: data,
-            options: {
-                responsive: true,
-
-                legend: {
-                    display: false
-                },
-                elements: {
-                    arc: {
-                        borderWidth: 0
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                }
-
-            }
-        });
-
-        Chart.pluginService.register({
-            beforeDraw: function(chart) {
-                var width = chart.chart.width,
-                    height = chart.chart.height,
-                    ctx = chart.chart.ctx;
-
-                ctx.restore();
-                var fontSize = (height / 114).toFixed(2);
-                ctx.font = fontSize + "em sans-serif";
-                ctx.textBaseline = "middle";
-
-                var text = percentCompleted +"%",
-                    textX = Math.round((width + ctx.measureText(text).width) / 2),
-                    textY = height / 2;
-
-                ctx.fillText(text, textX, textY);
-                ctx.save();
-            }
-        });
-    });
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+      
 </script>
+
 
     @endsection
