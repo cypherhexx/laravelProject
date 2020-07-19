@@ -12449,8 +12449,8 @@ a:focus {
 }
 
 #sidebar {
-  min-width: 210px;
-  max-width: 210px;
+  min-width: 230px;
+  max-width: 230px;
   background: #F4F5F8;
   color: #fff;
   -webkit-transition: all 0.3s;
@@ -12458,7 +12458,7 @@ a:focus {
 }
 
 #sidebar.active {
-  margin-left: -210px;
+  margin-left: -230px;
 }
 
 #sidebar .sidebar-header {
@@ -12928,7 +12928,7 @@ address {
 
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -210px;
+    margin-left: -230px;
   }
 
   #sidebar.active {
@@ -13164,5 +13164,14 @@ iframe .panel-heading .panel-title {
 
 .btn {
   border-radius: 2px;
+}
+
+/* Customize part */
+
+#content_customer {
+  min-height: 100vh;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100% !important;
 }
 

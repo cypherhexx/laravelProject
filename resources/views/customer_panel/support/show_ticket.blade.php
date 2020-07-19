@@ -54,10 +54,9 @@
   </div>
 @endsection
 
-
-
 @section('onPageJs')
 
+<script  type="text/javascript" src="{{ asset('vendor/gantt-chart/js/froala_editor.min.js') }}"></script>  
     <script>
         $(function () {
 
