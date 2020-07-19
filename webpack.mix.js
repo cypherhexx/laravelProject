@@ -125,7 +125,6 @@ mix.copy('node_modules/tinymce/skins', 'public/js/skins');
 // Make sure gantt-chart and laravel-filemanager folders are in public/vendor folder
 mix.copy('resources/assets/vendor/gantt-chart', 'public/vendor/gantt-chart', false);
 mix.copy('resources/assets/vendor/laravel-filemanager', 'public/vendor/laravel-filemanager', false);
-mix.copy('resources/assets/js/js', 'public/js/js',false);
 mix.copy('resources/assets/vendor/gantt-chart/img', 'public/img', false);
 
 
