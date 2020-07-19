@@ -29,10 +29,10 @@
             </div>
             <div class="card-body">
                 <span>@lang('form.total_expenses')</span>
-                <h4>$<span class="counter">{{ format_currency($expenses_stat['total_expenses'], TRUE)  }}</span></h4>
+                <h4><span class="counter">{{ format_currency($expenses_stat['total_expenses'], TRUE)  }}</span></h4>
                 
                 <div class="form-group">
-                    <label class="d-block">@lang('form.billable_expenses') <span class="float-right">$<span class="counter">{{ format_currency($expenses_stat['billable_expenses'], TRUE) }}</span></span></label>
+                    <label class="d-block">@lang('form.billable_expenses') <span class="float-right"><span class="counter">{{ format_currency($expenses_stat['billable_expenses'], TRUE) }}</span></span></label>
                     <div class="progress progress-xs">
                          @if(format_currency($expenses_stat['total_expenses'], TRUE) == 0)
                         <div class="progress-bar bg-azure" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 0%; background-color: red;"></div>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="d-block">@lang('form.billed_expenses') <span class="float-right">$<span class="counter">{{ format_currency($expenses_stat['billed_expenses'], TRUE) }}</span></span></label>
+                    <label class="d-block">@lang('form.billed_expenses') <span class="float-right"><span class="counter">{{ format_currency($expenses_stat['billed_expenses'], TRUE) }}</span></span></label>
 
                     <div class="progress progress-xs">
                           @if(format_currency($expenses_stat['total_expenses'], TRUE) == 0)
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="d-block">@lang('form.unbilled_expenses') <span class="float-right">$<span class="counter">{{ format_currency($expenses_stat['unbilled_expenses'], TRUE) }}</span></span></label>
+                    <label class="d-block">@lang('form.unbilled_expenses') <span class="float-right"><span class="counter">{{ format_currency($expenses_stat['unbilled_expenses'], TRUE) }}</span></span></label>
                     <div class="progress progress-xs">
                          @if(format_currency($expenses_stat['total_expenses'], TRUE) == 0)
                         <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
