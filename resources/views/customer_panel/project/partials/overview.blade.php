@@ -140,18 +140,20 @@
             </div>
         </div>
         <hr>
-        @if(check_customer_project_permission($rec->settings->permissions, 'view_task_total_logged_time')) 
+      
+
+        @if(check_customer_project_permission($rec->settings->permissions, 'view_finance_overview')) 
+            @include('project.partials.overview.expenses_overview')        
+            <hr>
+        @endif
+
+          @if(check_customer_project_permission($rec->settings->permissions, 'view_task_total_logged_time')) 
             
             @if($rec->billing_type_id != BILLING_TYPE_FIXED_RATE)  
                 @include('project.partials.overview.timesheet_overview')
                 <hr>
             @endif 
         @endif 
-
-        @if(check_customer_project_permission($rec->settings->permissions, 'view_finance_overview')) 
-            @include('project.partials.overview.expenses_overview')        
-            <hr>
-        @endif
         
        <!--  @if(check_customer_project_permission($rec->settings->permissions, 'view_team_members')) 
             <div id="members">
