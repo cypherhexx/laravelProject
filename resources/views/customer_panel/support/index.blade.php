@@ -20,9 +20,13 @@
             flex: none!important;
         }
 
+        .buttons-collection span {
+            margin-top: ;
+        }
+
         .dt-buttons.btn-group {
             position: relative; 
-            top: 45px;
+            top: 63px!important;
             direction: ltr!important;
         }
 
@@ -39,7 +43,7 @@
 
         #data_filter:before {
             font-family: "Font Awesome 5 Free";
-            content: " ss"!important;
+           
             display: none;
             padding-right: -15px;
             vertical-align: middle;
@@ -47,6 +51,7 @@
             position: relative;
             right: 16px;
             top: 65px;
+            color: transparent!important;
         }
   }
 
