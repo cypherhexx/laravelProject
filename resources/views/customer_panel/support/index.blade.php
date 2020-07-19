@@ -21,7 +21,7 @@
         }
 
         .buttons-collection span {
-            margin-top: ;
+      
         }
 
         .dt-buttons.btn-group {
