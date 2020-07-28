@@ -129,7 +129,7 @@ class TicketController extends Controller
 
  
         return view('customer_panel.support.create_ticket', compact('data'))->with('rec', []);
-    }
+    } 
 
 
     /**
@@ -140,14 +140,32 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
+        error_log("start checking");
+        error_log(json_encode($request['image']));
+        error_log(json_encode($request['details']));
+        error_log((Input::get('details')));
+        $html_string = Input::get('details');
+        $indexes = $this->strpos_all($html_string, 'blob');
+        $quoteIndexes = $this->strpos_all($html_string, '"');
+
+        foreach($indexes as $index)
+        {
+            error_log("start circulation");
+            $sub = substr($html_string, $index);
+            $pos = strpos($sub, '"');
+            $imgsrc = substr($sub, 0 , $pos);
+            error_log($imgsrc);
+            error_log($sub);
+        }
+
+        error_log(json_encode($indexes));
+        error_log(json_encode($this->strpos_all("aaa bbb aaa bbb aaa bbb", "aa")));
 
         $validator = Validator::make($request->all(), [
             'subject'               => 'required',
             'department_id'        	=> 'required',            
             'details'				=> 'required',
             'ticket_priority_id'    => 'required',
-            
-
         ]);
 
         if ($validator->fails()) 
@@ -321,6 +339,17 @@ class TicketController extends Controller
             session()->flash('message', __('form.could_not_perform_the_requested_action'));
             return redirect()->back();
         }
+    }
+
+
+    function strpos_all($haystack, $needle) {
+        $offset = 0;
+        $allpos = array();
+        while (($pos = strpos($haystack, $needle, $offset)) !== FALSE) {
+            $offset   = $pos + 1;
+            $allpos[] = $pos;
+        }
+        return $allpos;
     }
 
 

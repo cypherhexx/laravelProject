@@ -1,5 +1,9 @@
 <style type="text/css">
-    td {text-align: right; direction: rtl;} 
+    td {
+        text-align: right; 
+        direction: rtl;
+    }
+     
     .col-md-3 {
         text-align: right!important;
         direction: rtl;

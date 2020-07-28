@@ -87,8 +87,6 @@
       
     }
 
-
-
     #data_filter input {
         width: 200px;
         border: none;
@@ -113,21 +111,15 @@
         font-size: 18px;
     }
 
-/*    .buttons-collection span {
-        margin-top: 15px!important;
-    }*/
-
       .dt-buttons.btn-group {
         position: relative; 
         top: 45px;
-
     }
 
     .dt-buttons.btn-group button {
         background: transparent!important;
         border: none;
     }
-
 
     #data_filter:before {
         font-family: "Font Awesome 5 Free";
@@ -194,6 +186,7 @@
         top: 0;
         left: -14px;
     }
+    
     .btn-filters .btn.in_progress {
         background: #ffb136;
         color: #fff;

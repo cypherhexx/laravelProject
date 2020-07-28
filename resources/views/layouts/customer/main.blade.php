@@ -84,7 +84,8 @@
    <a class="navbar-brand navbar-brand col-sm-3 col-md-2 mr-0 d-none d-sm-block" href="#">
       <div>
         @if(get_company_logo(NULL, TRUE))
-          <img src="{{ get_company_logo(NULL, TRUE) }}" class="img-fluid" alt="{{ config('constants.company_name') }}">  
+        <!--   <img src="{{ get_company_logo(NULL, TRUE) }}" class="img-fluid" alt="{{ config('constants.company_name') }}">   -->
+        <img src="{{asset('images/netpower1.png')}}" alt="log" style="width: 120px; height: 30px;">
          @else 
             <h5>Netpower</h5>
           {{ get_company_logo(NULL, TRUE) }}
