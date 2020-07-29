@@ -140,26 +140,26 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        error_log("start checking");
-        error_log(json_encode($request['image']));
-        error_log(json_encode($request['details']));
-        error_log((Input::get('details')));
-        $html_string = Input::get('details');
-        $indexes = $this->strpos_all($html_string, 'blob');
-        $quoteIndexes = $this->strpos_all($html_string, '"');
+        // error_log("start checking");
+        // error_log(json_encode($request['image']));
+        // error_log(json_encode($request['details']));
+        // error_log((Input::get('details')));
+        // $html_string = Input::get('details');
+        // $indexes = $this->strpos_all($html_string, 'blob');
+        // $quoteIndexes = $this->strpos_all($html_string, '"');
 
-        foreach($indexes as $index)
-        {
-            error_log("start circulation");
-            $sub = substr($html_string, $index);
-            $pos = strpos($sub, '"');
-            $imgsrc = substr($sub, 0 , $pos);
-            error_log($imgsrc);
-            error_log($sub);
-        }
+        // foreach($indexes as $index)
+        // {
+        //     error_log("start circulation");
+        //     $sub = substr($html_string, $index);
+        //     $pos = strpos($sub, '"');
+        //     $imgsrc = substr($sub, 0 , $pos);
+        //     error_log($imgsrc);
+        //     error_log($sub);
+        // }
 
-        error_log(json_encode($indexes));
-        error_log(json_encode($this->strpos_all("aaa bbb aaa bbb aaa bbb", "aa")));
+        // error_log(json_encode($indexes));
+        // error_log(json_encode($this->strpos_all("aaa bbb aaa bbb aaa bbb", "aa")));
 
         $validator = Validator::make($request->all(), [
             'subject'               => 'required',

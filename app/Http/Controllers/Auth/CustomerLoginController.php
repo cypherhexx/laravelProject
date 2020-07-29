@@ -40,7 +40,7 @@ class CustomerLoginController extends Controller
         }
 
         return redirect()->back()->withInput($request->only('email', 'remember'))
-        ->withErrors(['email' => 'These credentials do not match our records.']);
+        ->withErrors(['email' => 'These credentials does not match our records.']);
 
     }
 
