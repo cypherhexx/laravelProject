@@ -302,7 +302,7 @@ class RegisterController extends Controller
                     $obj->dead_line                         = null;
                     $obj->description                       = null;
                     $obj->status_id                         = $project_pre['status_id'];
-                    $obj->settings                          = null;
+                    $obj->settings                          = '{"tabs":{"tasks":"on","timesheets":"on","files":"on","milestones":"on","gantt_view":"on","invoices":"on","estimates":"on"},"permissions":{"view_tasks":"on","create_tasks":"on","edit_tasks":"on","comment_on_tasks":"on","view_task_comments":"on","view_task_attachments":"on","upload_on_tasks":"on","view_task_total_logged_time":"on","view_finance_overview":"on","view_milestones":"on","view_gantt":"on","view_timesheets":"on","view_team_members":"on","upload_files":"on"}}';
                     $obj->created_by                        = 1 ;
                     $obj->save();
 
