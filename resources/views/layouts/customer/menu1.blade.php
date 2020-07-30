@@ -2,9 +2,9 @@
    <div class="container">
       <a class="navbar-brand" href="{{ route('customer_dashboard') }}">
       @if(get_company_logo(NULL, TRUE) )
-      <img src="{{ get_company_logo(NULL, TRUE) }}" class="img-fluid" alt="{{ config('constants.company_name') }}">
+     <img src="{{asset('images/netpower1.png')}}" alt="log" style="width: 120px; height: 30px;">
       @else
-      {{ config('constants.company_name') }}
+   <img src="{{asset('images/netpower1.png')}}" alt="log" style="width: 120px; height: 30px;">
       @endif  
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">

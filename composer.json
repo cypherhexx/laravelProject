@@ -23,7 +23,8 @@
         "tormjens/eventy": "^0.5.4",
         "unisharp/laravel-filemanager": "~1.8",
         "webklex/laravel-imap": "^1.2",
-        "willdurand/email-reply-parser": "^2.8"
+        "willdurand/email-reply-parser": "^2.8",
+        "nesbot/carbon": "^2.35"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

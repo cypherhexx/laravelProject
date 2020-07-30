@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
       <div class="col-md-8">
          <h2 class="t-heading -size-l">@lang('form.customer_registration')</h2>
-         <a href="{{ route('verification_resend') }}">Resend Email Validation Link</a>
+         <a href="{{ route('verification_resend') }}">שלח שוב קישור לאימות אימיילים
+ </a>
          <div class="card" style="margin-bottom: 10%;">
             <div class="card-body">
 

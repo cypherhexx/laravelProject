@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Customer;
+use App\Ticket;
+use App\Comment;
+use App\Project;
+use App\ProjectPreview;
 use App\NumberGenerator;
 use App\CustomerContact;
 use Illuminate\Http\Request;
@@ -16,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmEmail;
 use Illuminate\Support\Facades\DB;
 use App\Rules\ValidRecaptcha;
+
 
 class RegisterController extends Controller
 {
@@ -52,9 +57,10 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $rec = [];
+        $data1 = Project::dropdown();
         $data   = Customer::dropdowns();
 
-        return view('auth.register', compact('data'))->with('rec', $rec);
+        return view('auth.register', compact('data','data1'))->with('rec', $rec);
     }
 
 
@@ -74,6 +80,7 @@ class RegisterController extends Controller
             'contact_email' => 'required|string|email|max:255|unique:customer_contacts,email|unique:customer_registrations',
             'contact_password' => 'required|string|min:6',
             'repeat_password' => 'required|same:contact_password',
+            'project_name' => 'required|string|max:255'
         ];
 
 
@@ -104,7 +111,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {    
-        
+
+     
+        $dateToday = date('Y-m-d');
+        error_log("dateTime");
+        error_log(json_encode($dateToday));
+
+        $userData = array('name' => $data['name'], 'billing_type_id' => 1, 'status_id' => 1,'customer_name' => $data['contact_email'], 'registration_id' => 1,'start_date' => $dateToday);
+        error_log(json_encode($userData));
+
+        ProjectPreview::create($userData);
+
         $data['verification_token'] = substr(md5(uniqid(rand(), true)), 16, 16); // 16 characters long
         $data['contact_password']   = Hash::make($data['contact_password']);
         $user = CustomerRegistration::create($data);
@@ -179,7 +196,168 @@ class RegisterController extends Controller
 
                 if ($success) 
                 {
+
+                    $project_pre = ProjectPreview::where('customer_name',$customer->contact_email)->first();
+                    $customer_select = CustomerContact::where('email',$customer->contact_email)->value('id');
+                    $customer_first = CustomerContact::where('email',$customer->contact_email)->value('first_name');
+                    $customer_last = CustomerContact::where('email',$customer->contact_email)->value('last_name');
+                    error_log("id");
+                    error_log($customer_select);
+                    error_log('start projectpreview');
+                    error_log(json_encode($project_pre));
+
+                    //modify the project part
+                
+
+                DB::beginTransaction();
+                $success = false;
+
+
+
+                //ticket create
+
+                 try {
+                $request = new Request();
+
+   
+
+                $request['subject'] = "VIP TICKET";
+                $request['department_id'] = 1;
+                $request['details'] = "details";
+                $request['ticket_priority_id'] = 1;
+
+                $request['number']                   = NumberGenerator::gen(COMPONENT_TYPE_TICKET);
+                $request['created_by']               = $customer_select;
+                $request['user_type']                = USER_TYPE_CUSTOMER;
+
+                $request['customer_contact_id']     = $customer_select;
+                $request['name']                    = $customer_first . " " . $customer_last;
+                $request['email']                   = $customer->contact_email;
+                $request['ticket_status_id']        = TICKET_STATUS_OPEN ;
+
+                // Saving Data        
+                $ticket  = Ticket::create($request->all());     
+
+                $comment            = new Comment();
+                $comment->body      = "VIP ticket";
+                $comment->user_id   = $customer_select;
+                $comment->user_type = USER_TYPE_CUSTOMER;
+                $ticket->comments()->save($comment);
+
+               
+
+                // Save the attachments (If exists)
+                // $files             = $request->attachment;
+           
+                // if(!empty($files))
+                // {
+                //     $attachment = new Attachment();
+                //     $attachment->add($files, $comment);       
+                
+                // }
+
+
+                // Log Actitivy
+                // $description    = __('form.new_ticket_opened');
+                // $details        = anchor_link($ticket->number, route('show_ticket_page', $ticket->id ) );            
+                // log_activity($ticket, $description , $details); 
+
+
+                // // Send Notification to all Members of the department
+                // $ticket->notify_new_ticket_created_by_customer();
+            
+
+
+                DB::commit();
+                $success = true;
+            } 
+            catch (\Exception  $e) {
+                
+                $success = false;
+                DB::rollback();
+
+                
+            }
+
+
+                //ticket create end
+
+                try {
+
+
+
+                    // Saving Data
+                    error_log("projecting");
+                    error_log($project_pre['name']);
+                    $obj = new Project();
+                    $obj->number                            = NumberGenerator::gen(COMPONENT_TYPE_PROJECT);
+                    $obj->name                              = $project_pre['name'];
+                
+                    $obj->customer_id                       = $customer_select;        
+                    $obj->calculate_progress_through_tasks  = null;
+                    $obj->progress                          = null;
+                    $obj->billing_type_id                   = $project_pre['billing_type_id'];
+                    $obj->billing_rate                      = null;
+                    $obj->start_date                        = $project_pre['start_date'];
+                    $obj->dead_line                         = null;
+                    $obj->description                       = null;
+                    $obj->status_id                         = $project_pre['status_id'];
+                    $obj->settings                          = null;
+                    $obj->created_by                        = 1 ;
+                    $obj->save();
+
+
+                    // Attaching Members of the Project
+                    // $member_ids                             = $request->user_id;
+
+                    // if($member_ids)
+                    // {
+                    //     if(!in_array(auth()->user()->id, $member_ids ))
+                    //     {
+                    //         array_push($member_ids, auth()->user()->id );      
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     $member_ids = [auth()->user()->id];
+                    // }          
+
+                    // $obj->members()->attach($member_ids);
+
+
+                    // // Attaching Tags            
+                    // if(isset($request->tag_id) && $request->tag_id)
+                    // {
+                    //     $obj->tag_attach($request->tag_id);
+                    // }
+
+
+
+                    // Log Activity   
+                    $description = sprintf(__('form.act_has_created_a_new_project'), anchor_link($obj->name, route('cp_show_project_page', $obj->id ) ));
+                    log_activity($obj, trim($description));
+
+
+                    DB::commit();
+                    $success = true;
+                } catch (\Exception  $e) {
+                    $success = false;
+
+                    DB::rollback();
+
+                }
+
+                if ($success) {
+                    // the transaction worked ...
                     return view('auth.verified');
+                } else {
+                   abort(404);
+                }
+                    //end the create project part
+
+
+                    return view('auth.verified');
+
                 } 
                 else 
                 {

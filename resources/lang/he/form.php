@@ -1241,6 +1241,7 @@ return [
     'frequency' => 'תדירות ',
     'sign_in_different' => 'היכנס באמצעות חשבון אחר ',
     'my_balance' => 'האיזון שלי ',
+    'project_name' => 'שם הפרוייקט ',
 ];
 
 

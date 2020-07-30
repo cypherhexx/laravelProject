@@ -1,3 +1,10 @@
+<style type="text/css">
+   .form-group {
+      text-align: right;
+   }
+</style>
+
+
 <div class="row">
    <div class="col-md-6">
       <div class="form-group">
@@ -36,6 +43,14 @@
          <input type="text" class="form-control form-control-sm {{ showErrorClass($errors, 'contact_phone') }}" name="contact_phone"  value="{{ old_set('contact_phone', NULL, $rec) }}">
          <div class="invalid-feedback">{{ showError($errors, 'contact_phone') }}</div>
       </div>
+       <div class="form-group ">
+          <label for="name">@lang('form.project_name') <span class="required">*</span></label>
+          <input type="text"
+                 class="form-control form-control-sm @php if($errors->has('name')) { echo 'is-invalid'; } @endphp"
+                 id="project_name" name="project_name" value="">
+          <div class="invalid-feedback d-block">@php if($errors->has('project_name')) { echo $errors->first('project_name') ; } @endphp</div>
+      </div>
+
    </div>
    <div class="col-md-6">
       <div class="form-group ">
@@ -85,5 +100,7 @@
          </div>
          <div class="invalid-feedback">@php if($errors->has('country_id')) { echo $errors->first('country_id') ; } @endphp</div>
       </div>
+
+
    </div>
 </div>
